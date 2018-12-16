@@ -2,6 +2,8 @@
 
 <p>This LIRI function allows you to find the songs, movies, and concerts that you want.</p>
 
+<h3><strong>After you finished with searching, it will store into the log.txt file, which allows you to retrieve the data from your research!</strong></h3>
+
 <p>When you type these following functions:</p>
 <li>concert-this</li>
 <li>spotify-this-song</li>
