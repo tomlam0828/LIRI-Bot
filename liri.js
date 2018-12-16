@@ -36,10 +36,22 @@ function concertThis(artist) {
     axios.get(URL)
     .then(function(response){
         var data = response.data[0];
-        console.log("Name of the Venue: " + data.venue.name);
-        console.log("Venue location: " + data.venue.city);
         var date = moment(data.datetime).format("MM-DD-YYYY");
-        console.log("Date of the Event: " + date);
+
+        var showData = [
+        "Name of the Venue: " + data.venue.name,
+        "Venue location: " + data.venue.city,
+        "Date of the Event: " + date,
+        ].join('\n\n');
+
+        fs.appendFile('log.txt', showData + "\n\n", (err) => {
+            if (err) {
+                console.log(err);
+            }else {
+                console.log("Saved into log.txt file!");
+                console.log(showData)
+            }
+        })
     })
 }
 
@@ -47,10 +59,20 @@ function spotifyThis(song) {
     spotify.search({ type: 'track', query: song })
     .then(function(response) {
     var data = response.tracks.items[0];
-    console.log("Artist: " + data.artists[0].name);
-    console.log("The song's name: " + data.name);
-    console.log("Preview link: " + data.preview_url);
-    console.log("The album: " + data.album.name);
+    var showData = [
+    "Artist: " + data.artists[0].name,
+    "The song's name: " + data.name,
+    "Preview link: " + data.preview_url,
+    "The album: " + data.album.name,
+    ].join('\n\n');
+    fs.appendFile('log.txt', showData + "\n\n", (err) => {
+        if (err) {
+            console.log(err);
+        }else {
+            console.log("Saved into log.txt file!");
+            console.log(showData);
+        }
+    })
   })
   .catch(function(err) {
     console.log(err);
@@ -63,12 +85,22 @@ function movieThis(movie) {
     axios.get(movieURL)
     .then(function(response) {
         var json = response.data;
-        console.log("Title: " + json.Title);
-        console.log("Year: " + json.Year);
-        console.log("Rating: " + json.Ratings[0].Value);
-        console.log("Country of produced: " + json.Country);
-        console.log("Language: " + json.Language);
-        console.log("Plot of the movie: " + json.Plot);
-        console.log("Actors: " + json.Actors);
+        var showData = [
+        "Title: " + json.Title,
+        "Year: " + json.Year,
+        "Rating: " + json.Ratings[0].Value,
+        "Country of produced: " + json.Country,
+        "Language: " + json.Language,
+        "Plot of the movie: " + json.Plot,
+        "Actors: " + json.Actors,
+        ].join('\n\n');
+        fs.appendFile('log.txt', showData + "\n\n", (err) => {
+            if (err) {
+                console.log(err);
+            }else {
+                console.log("Saved into log.txt file!");
+                console.log(showData);
+            }
+        })
     })
 }
